@@ -4,7 +4,7 @@ import { context } from '../../context';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ListCards from '../../components/ListDrinkCards';
-import fetchApi from '../../services';
+import fetchApi from '../../services/fetchs';
 import useDrinkApi from '../../hooks/useDrinkApi';
 import CategoriesButtons from '../../components/SearchButtons';
 

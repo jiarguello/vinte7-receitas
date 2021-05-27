@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import fetchApi from '../../services';
+import fetchApi from '../../services/fetchs';
 import { context } from '../../context';
 import ButtonsContainer from './styled';
 

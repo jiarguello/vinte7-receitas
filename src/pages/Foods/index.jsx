@@ -4,7 +4,7 @@ import { context } from '../../context';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ListFoodCards from '../../components/ListFoodCards';
-import fetchApi from '../../services';
+import fetchApi from '../../services/fetchs';
 import useFoodApi from '../../hooks/useFoodApi';
 import CategoriesButtons from '../../components/SearchButtons';
 

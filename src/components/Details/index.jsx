@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-import fetchApi from '../../services';
+import fetchApi from '../../services/fetchs';
 import * as S from './styled';
 import TitleContainer from './TitleContainer';
 import {
@@ -10,7 +10,7 @@ import {
   measureArray,
   sources,
   sourcesRecomendations,
-} from './services';
+} from '../../services/functions';
 import { updateLocalStorageItemInProgress } from '../../services/localStorage';
 import { context } from '../../context';
 

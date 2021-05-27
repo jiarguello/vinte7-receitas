@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { context } from '../../context';
-import fetchApi from '../../services/index';
+import fetchApi from '../../services/fetchs';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 

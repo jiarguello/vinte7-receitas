@@ -1,9 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
-import * as S from './styled';
-import validationLogin from '../../validations/loginValidation';
-import { context } from '../../context';
-import logo from '../../images/logo.svg';
+import * as S from '../css/pages/S.Login';
+import validationLogin from '../validations/loginValidation';
+import { context } from '../context';
+import logo from '../images/logo.svg';
 
 function Login() {
   const [shouldRedirect, setShouldRedirect] = useState(false);

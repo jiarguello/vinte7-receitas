@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import { context } from '../context';
-import fetchApi from '../services';
+import fetchApi from '../services/fetchs';
 
 const initialState = {
   searchTerm: '',

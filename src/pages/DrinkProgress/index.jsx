@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import fetchApi from '../../services';
+import fetchApi from '../../services/fetchs';
 import * as S from '../../components/Details/styled';
 import TitleContainer from '../../components/Details/TitleContainer';
 import {
@@ -9,7 +9,7 @@ import {
   ingredientsArray,
   measureArray,
   sources,
-} from '../../components/Details/services';
+} from '../../services/functions';
 
 export default function DrinkProgress(props) {
   const [details, setDetails] = useState(null);

@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useContext } from 'react';
-import fetchApi from '../../services/index';
+import fetchApi from '../../services/fetchs';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ListFoodCards from '../../components/ListFoodCards';
