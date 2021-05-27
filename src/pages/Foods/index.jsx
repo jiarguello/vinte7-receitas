@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ListFoodCards from '../../components/ListFoodCards';
 import fetchApi from '../../services/fetchs';
-import useFoodApi from '../../hooks/useFoodApi';
+import HooksApi from '../../services/hooksApi';
 import CategoriesButtons from '../../components/SearchButtons';
 
 export default function Foods() {
@@ -15,7 +15,7 @@ export default function Foods() {
   let selector = 'name';
   let searchName = '';
 
-  const { foods: foodsHook, setFilter: setFilterHook } = useFoodApi();
+  const { foods: foodsHook, setFilter: setFilterHook } = HooksApi('food');
   const uniqueRecipe = foods && foods.length === 1;
 
   useEffect(() => {
@@ -43,7 +43,6 @@ export default function Foods() {
 
   return (
     <>
-
       <Header title="Comidas" canFind setFilter={ setFilterHook } />
       {categories && <CategoriesButtons type="food" />}
       <ListFoodCards items={ foods } />

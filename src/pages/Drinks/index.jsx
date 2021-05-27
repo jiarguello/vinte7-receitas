@@ -5,7 +5,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import ListCards from '../../components/ListDrinkCards';
 import fetchApi from '../../services/fetchs';
-import useDrinkApi from '../../hooks/useDrinkApi';
+import HooksApi from '../../services/hooksApi';
 import CategoriesButtons from '../../components/SearchButtons';
 
 export default function Drinks() {
@@ -15,7 +15,7 @@ export default function Drinks() {
   let selector = 'name';
   let searchName = '';
 
-  const { drinks: drinksHook, setFilter: setFilterHook } = useDrinkApi();
+  const { drinks: drinksHook, setFilter: setFilterHook } = HooksApi('cocktail');
   const uniqueRecipe = drinks && drinks.length === 1;
   const moreThanOneRecipes = drinks && drinks.length > 1;
 
@@ -29,7 +29,7 @@ export default function Drinks() {
     fetchApi('cocktail', selector, searchName).then((res) => {
       const fetchDrinks = res.drinks
         .filter((drink) => res.drinks.indexOf(drink) < lengthOfList);
-      setDrinks(fetchDrinks);
+        setDrinks(fetchDrinks);
     });
 
     const lengthOfCategories = 5;

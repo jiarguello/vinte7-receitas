@@ -27,3 +27,10 @@ export const sources = (meal, drink, details, typePath) => (details
 
 export const sourcesRecomendations = (meal, drink, recipe, typePath) => (typePath
   === 'food' ? recipe[drink] : recipe[meal]);
+
+// export const fetchWithLimit = (type, limit) => {
+//   fetchApi(type, selector, searchName).then((res) => {
+//     const fetchDrinks = res.drinks
+//       .filter((drink) => res.drinks.indexOf(drink) < lengthOfList);
+//     setDrinks(fetchDrinks);
+// }

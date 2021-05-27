@@ -11,6 +11,7 @@ function Provider({ children }) {
   const [formValidation, setFormValidation] = useState(false);
   const [foods, setFoods] = useState(null);
   const [drinks, setDrinks] = useState(null);
+  // const [recipes, setRecipes] = useState(null);
   const [categories, setCategories] = useState();
   const [isSearching, setIsSearching] = useState(false);
   const [toggleButton, setToggleButton] = useState(null);
@@ -26,10 +27,8 @@ function Provider({ children }) {
   const value = {
     data,
     setData,
-    drinks,
     doneRecipes,
     setDoneRecipe,
-    setDrinks,
     favoriteRecipes,
     setFavoriteRecipes,
     isSearching,
@@ -40,6 +39,10 @@ function Provider({ children }) {
     setAuthLogin,
     formValidation,
     setFormValidation,
+    // recipes,
+    // setRecipes,
+    drinks,
+    setDrinks,
     foods,
     setFoods,
     categories,
