@@ -1,34 +1,39 @@
 import React, { useEffect, useState, useContext } from 'react';
-import fetchApi from '../../services/fetchs';
-import Header from '../../components/Header';
-import Footer from '../../components/Footer';
-import ListFoodCards from '../../components/ListFoodCards';
-import { context } from '../../context';
+import fetchApi from '../services/fetchs';
+import Header from '../components/Header';
+import Footer from '../components/Footer';
+import ListCards from '../components/ListCards';
+import { context } from '../context';
+import { pathName } from '../services/functions';
 
-export default function ExploreFoodArea() {
+export default function ExploreFoodArea(props) {
   const [areas, setAreas] = useState([]);
   const [selectArea, setSelectArea] = useState('');
   const [selector, setSelector] = useState('name');
-  const { foods, setFoods } = useContext(context);
+  const { foods, setFoods, drinks, setDrinks } = useContext(context);
+
+  const { match: { path } } = props;
+  const { typePath } = pathName(path);
+  const typeOfPage = (typePath === 'food') ? 'foods' : 'drinks';
+  const typeOfKey = (typePath === 'food') ? 'meals' : 'drinks';
 
   useEffect(() => {
-    fetchApi('food', 'areasList', '').then(((list) => setAreas(list.meals)));
+    fetchApi(typePath, 'areasList', '').then(((list) => setAreas(list.meals)));
   }, []);
 
   useEffect(() => {
     const lengthOfList = 12;
     fetchApi('food', selector, selectArea).then((res) => {
-      const fetchFoods = res.meals
-        .filter((food) => res.meals.indexOf(food) < lengthOfList);
-      setFoods(fetchFoods);
+      const fetchRecipes = res[typeOfKey]
+        .filter((recipe) => res[typeOfKey].indexOf(recipe) < lengthOfList);
+        (typePath === 'food') ? setFoods(fetchRecipes) : setDrinks(fetchRecipes);
     });
-  }, [setFoods, selectArea, selector]);
+  }, [setDrinks, setFoods, selectArea, selector]);
 
   function createDropdown() {
     return areas.map((area) => (
       <option
         key={ area.strArea }
-        data-testid={ `${area.strArea}-option` }
         value={ area.strArea }
       >
         {area.strArea}
@@ -51,17 +56,16 @@ export default function ExploreFoodArea() {
     <>
       <Header title="Explorar Origem" canFind />
       <div>
-        <select data-testid="explore-by-area-dropdown" onChange={ handleChange }>
+        <select onChange={ handleChange }>
           <option
             key="all"
-            data-testid="All-option"
             value="All"
           >
             All
           </option>
           {createDropdown()}
         </select>
-        <ListFoodCards items={ foods } />
+        <ListCards items={ (typePath === 'food') ? foods : drinks } type={typeOfPage} />
       </div>
       <Footer />
     </>
