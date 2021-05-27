@@ -6,16 +6,14 @@ import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Profile from './pages/Profile';
 import Layout from './components/Layout';
-import Foods from './pages/Foods';
-import Drinks from './pages/Drinks';
+import MainPage from './pages/MainPage';
 import FoodProgress from './pages/FoodProgress';
 import DrinkProgress from './pages/DrinkProgress';
 import Explore from './pages/Explore';
-import ExploreFood from './pages/ExploreFood';
-import ExploreDrinks from './pages/ExploreDrinks';
+import ExploreByType from './pages/ExploreByType';
 import ExploreFoodIngredients from './pages/ExploreFoodIngredients';
 import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
-import ExploreFoodArea from './pages/ExploreFoodArea';
+import ExploreArea from './pages/ExploreArea';
 import NotFound from './pages/NotFound';
 import Details from './components/Details';
 
@@ -35,11 +33,8 @@ export default function App() {
               path="/explorar/bebidas/ingredientes"
               component={ ExploreDrinksIngredients }
             />
-            <Route path="/explorar/comidas/area" component={ ExploreFoodArea } />
-            <Route path="/explorar/bebidas/area" component={ NotFound } />
-            <Route path="/explorar/comidas" component={ ExploreFood } />
-            <Route path="/explorar/bebidas" component={ ExploreDrinks } />
-            <Route path="/explorar/bebidas" component={ ExploreDrinks } />
+            <Route path="/explorar/comidas/area" component={ ExploreArea } />
+            <Route path="/explorar/bebidas/area" component={ ExploreArea } />
             <Route
               path="/comidas/:id"
               render={ (props) => <Details { ...props } /> }
@@ -48,11 +43,11 @@ export default function App() {
               path="/bebidas/:id"
               render={ (props) => <Details { ...props } /> }
             />
-            <Route path="/explorar/bebidas" component={ ExploreDrinks } />
-            <Route path="/explorar/comidas" component={ ExploreFood } />
+            <Route path="/explorar/bebidas" component={ ExploreByType } />
+            <Route path="/explorar/comidas" component={ ExploreByType } />
             <Route path="/explorar" component={ Explore } />
-            <Route path="/comidas" component={ Foods } />
-            <Route path="/bebidas" component={ Drinks } />
+            <Route path="/comidas" component={ MainPage } />
+            <Route path="/bebidas" component={ MainPage } />
             <Route path="/perfil" component={ Profile } />
             <Route path="/receitas-feitas" component={ DoneRecipes } />
             <Route path="/receitas-favoritas" component={ FavoriteRecipes } />
