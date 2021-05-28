@@ -1,20 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import fetchApi from '../../services/fetchs';
-import * as S from '../../components/Details/styled';
-import TitleContainer from '../../components/Details/TitleContainer';
+import fetchApi from '../services/fetchs';
+import * as S from '../components/Details/styled';
+import TitleContainer from '../components/Details/TitleContainer';
 import {
   pathName,
   ingredientsArray,
   measureArray,
   sources,
-} from '../../services/functions';
+} from '../services/functions';
 
-export default function FoodProgress(props) {
-  const data = new Date();
-  const dataToday = `${data.getDay()}/${data.getDay()}/${data.getDay()}`;
-  console.log(dataToday);
+export default function RecipeProgress(props) {
   const [details, setDetails] = useState(null);
   const [counter, setCounter] = useState(0);
   const [redirect, setRedirect] = useState(false);
@@ -45,29 +42,25 @@ export default function FoodProgress(props) {
     //   type: comida-ou-bebida,
     //   area: area-da-receita-ou-texto-vazio,
     //   category: categoria-da-receita-ou-texto-vazio,
-    //   alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio
+    //   alcoholicOrNot: alcoholic-ou-non-alcoholic-ou-texto-vazio,
     //   name: nome-da-receita,
     //   image: imagem-da-receita,
     //   doneDate: quando-a-receita-foi-concluida,
-    //   tags: array-de-tags-da-receita-ou-array-vazio,
+    //   tags: array-de-tags-da-receita-ou-array-vazio
     // }
 
     setRedirect(true);
     // Aqui tem que ser atualizado;
   };
 
-  console.log(details);
-  console.log(data.toDateString());
-
   return (
     <S.Container>
       <S.ThumbNail
         src={ sources('strMealThumb', 'strDrinkThumb', details, typePath) }
         alt="recipe"
-        data-testid="recipe-photo"
       />
       <TitleContainer { ...props } item={ details } />
-      <h3 data-testid="recipe-category">
+      <h3>
         {details
           && (typePath === 'food' ? details.strCategory : details.strAlcoholic)}
       </h3>
@@ -78,7 +71,6 @@ export default function FoodProgress(props) {
             <label
               key={ index }
               htmlFor={ index }
-              data-testid={ `${index}-ingredient-step` }
             >
               <input
                 id={ index }
@@ -91,10 +83,9 @@ export default function FoodProgress(props) {
             </label>
           ))}
       </ul>
-      <p data-testid="instructions">{details && details.strInstructions}</p>
+      <p>{details && details.strInstructions}</p>
       <button
         type="button"
-        data-testid="finish-recipe-btn"
         disabled={ ((ingredientsArray(details) === null
           ? '' : (ingredientsArray(details).length) !== counter)) }
         onClick={ doneRecipe }
@@ -106,7 +97,7 @@ export default function FoodProgress(props) {
   );
 }
 
-FoodProgress.propTypes = {
+RecipeProgress.propTypes = {
   id: PropTypes.string.isRequired,
   match: PropTypes.shape({
     params: PropTypes.objectOf(PropTypes.string),

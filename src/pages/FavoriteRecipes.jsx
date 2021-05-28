@@ -1,9 +1,9 @@
 import React, { useContext, useState } from 'react';
-import ListFavoriteCards from '../../components/ListFavoriteCards';
+import ListFavoriteCards from '../components/ListFavoriteCards';
 
-import Header from '../../components/Header';
-import { context } from '../../context';
-import { setInitialLocalStorage } from '../../services/localStorage';
+import Header from '../components/Header';
+import { context } from '../context';
+import { setInitialLocalStorage } from '../services/localStorage';
 
 const FILTER_OPTIONS = {
   all: 'All',
@@ -37,7 +37,6 @@ function FavoriteRecipes() {
     <button
       key={ option }
       type="button"
-      data-testid={ `filter-by-${option}-btn` }
       onClick={ handleFilter.bind(null, option) }
     >
       {FILTER_OPTIONS[option]}

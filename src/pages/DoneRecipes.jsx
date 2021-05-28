@@ -1,8 +1,8 @@
 import React, { useContext, useState } from 'react';
-import Header from '../../components/Header';
-import ListDoneRecipeCards from '../../components/ListDoneRecipeCard';
-import { setInitialLocalStorage } from '../../services/localStorage';
-import { context } from '../../context';
+import Header from '../components/Header';
+import ListDoneRecipeCards from '../components/ListDoneRecipeCard';
+import { setInitialLocalStorage } from '../services/localStorage';
+import { context } from '../context';
 
 const FILTER_OPTIONS = {
   all: 'All',

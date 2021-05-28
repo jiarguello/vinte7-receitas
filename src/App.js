@@ -7,12 +7,10 @@ import FavoriteRecipes from './pages/FavoriteRecipes';
 import Profile from './pages/Profile';
 import Layout from './components/Layout';
 import MainPage from './pages/MainPage';
-import FoodProgress from './pages/FoodProgress';
-import DrinkProgress from './pages/DrinkProgress';
+import RecipeProgress from './pages/RecipeProgress';
 import Explore from './pages/Explore';
 import ExploreByType from './pages/ExploreByType';
-import ExploreFoodIngredients from './pages/ExploreFoodIngredients';
-import ExploreDrinksIngredients from './pages/ExploreDrinksIngredients';
+import ExploreIngredients from './pages/ExploreIngredients';
 import ExploreArea from './pages/ExploreArea';
 import NotFound from './pages/NotFound';
 import Details from './components/Details';
@@ -23,15 +21,15 @@ export default function App() {
       <Provider>
         <BrowserRouter>
           <Switch>
-            <Route path="/bebidas/:id/in-progress" component={ DrinkProgress } />
-            <Route path="/comidas/:id/in-progress" component={ FoodProgress } />
+            <Route path="/bebidas/:id/in-progress" component={ RecipeProgress } />
+            <Route path="/comidas/:id/in-progress" component={ RecipeProgress } />
             <Route
               path="/explorar/comidas/ingredientes"
-              component={ ExploreFoodIngredients }
+              component={ ExploreIngredients }
             />
             <Route
               path="/explorar/bebidas/ingredientes"
-              component={ ExploreDrinksIngredients }
+              component={ ExploreIngredients }
             />
             <Route path="/explorar/comidas/area" component={ ExploreArea } />
             <Route path="/explorar/bebidas/area" component={ ExploreArea } />
