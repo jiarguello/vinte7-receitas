@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import fetchApi from '../services/fetchs';
-import * as S from '../components/Details/styled';
-import TitleContainer from '../components/Details/TitleContainer';
+import * as S from '../css/pages/S.RecipeProgress';
+import TitleContainer from '../components/TitleContainer';
 import {
   pathName,
   ingredientsArray,

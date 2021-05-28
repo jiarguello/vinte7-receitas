@@ -13,7 +13,7 @@ import ExploreByType from './pages/ExploreByType';
 import ExploreIngredients from './pages/ExploreIngredients';
 import ExploreArea from './pages/ExploreArea';
 import NotFound from './pages/NotFound';
-import Details from './components/Details';
+import Details from './pages/Details';
 
 export default function App() {
   return (

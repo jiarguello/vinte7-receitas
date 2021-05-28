@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import clipboardCopy from 'clipboard-copy';
 import { Link } from 'react-router-dom';
-import BlackHeart from '../../images/blackHeartIcon.svg';
-import WhiteHeart from '../../images/whiteHeartIcon.svg';
-import shareIcon from '../../images/shareIcon.svg';
+import BlackHeart from '../images/blackHeartIcon.svg';
+import WhiteHeart from '../images/whiteHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
 import {
   updateLocalStorageItem,
-} from '../../services/localStorage';
+} from '../services/localStorage';
 
 const timeoutClipboard = 2000;
 

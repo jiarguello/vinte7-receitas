@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import * as S from './S.SearchFilters';
-import { context } from '../../context';
+import * as S from '../css/components/S.SearchFilters';
+import { context } from '../context';
 
 const initialState = {
   searchTerm: '',

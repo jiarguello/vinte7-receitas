@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import * as S from './S.Header';
-import ProfileIcon from '../../images/profileIcon.svg';
-import SearchIcon from '../../images/searchIcon.svg';
-import SearchFilters from '../SearchFilters/SerchFilters';
+import * as S from '../css/components/S.Header';
+import ProfileIcon from '../images/profileIcon.svg';
+import SearchIcon from '../images/searchIcon.svg';
+import SearchFilters from './SerchFilters';
 
 export default function Header({ title, canFind, setFilter }) {
   const [searchFilters, setSearchFilters] = useState(false);

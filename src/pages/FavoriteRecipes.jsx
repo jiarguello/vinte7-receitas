@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
-import ListFavoriteCards from '../components/ListFavoriteCards/ListFavoriteCards';
+import ListFavoriteCards from '../components/ListFavoriteCards';
 
-import Header from '../components/Header/Header';
+import Header from '../components/Header';
 import { context } from '../context';
 import { setInitialLocalStorage } from '../services/localStorage';
 

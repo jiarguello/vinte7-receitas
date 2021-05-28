@@ -1,12 +1,12 @@
 import React, { useContext, useState } from 'react';
 import clipboardCopy from 'clipboard-copy';
 import PropTypes from 'prop-types';
-import BlackHeart from '../../images/blackHeartIcon.svg';
-import WhiteHeart from '../../images/whiteHeartIcon.svg';
-import shareIcon from '../../images/shareIcon.svg';
-import { updateLocalStorageItem } from '../../services/localStorage';
-import * as S from './S.Details';
-import { context } from '../../context';
+import BlackHeart from '../images/blackHeartIcon.svg';
+import WhiteHeart from '../images/whiteHeartIcon.svg';
+import shareIcon from '../images/shareIcon.svg';
+import { updateLocalStorageItem } from '../services/localStorage';
+import * as S from '../css/components/S.TitleContainer';
+import { context } from '../context';
 
 const pathName = (path) => ({
   typePath: path.includes('comidas') ? 'food' : 'cocktail',

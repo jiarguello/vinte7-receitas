@@ -1,5 +1,18 @@
 import styled from 'styled-components';
 
+export const Container = styled.section`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
+export const ThumbNail = styled.img`
+  width: 100%;
+  height: 20rem;
+  object-fit: cover;
+`;
+
 export const TitleContainer = styled.section`
   display: flex;
   justify-content: space-around;
@@ -29,3 +42,4 @@ export const StartButton = styled.button`
   position: fixed;
   width: 50%;
 `;
+

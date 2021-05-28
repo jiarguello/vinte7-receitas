@@ -1,6 +1,6 @@
 import React from 'react';
 import { Redirect } from 'react-router-dom';
-import Header from '../components/Header/Header';
+import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 class Profile extends React.Component {

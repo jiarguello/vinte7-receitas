@@ -2,8 +2,8 @@ import React, { useContext, useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import fetchApi from '../services/fetchs';
-import * as S from '../components/Details/S.Details';
-import TitleContainer from '../components/Details/TitleContainer';
+import * as S from '../css/pages/S.Details';
+import TitleContainer from '../components/TitleContainer';
 import {
   pathName,
   ingredientsArray,

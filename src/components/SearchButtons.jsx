@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import fetchApi from '../../services/fetchs';
-import { context } from '../../context';
-import ButtonsContainer from './S.SearchButtons';
+import fetchApi from '../services/fetchs';
+import { context } from '../context';
+import ButtonsContainer from '../css/components/S.SearchButtons';
 
 function CategoriesButtons(props) {
   const { type } = props;
