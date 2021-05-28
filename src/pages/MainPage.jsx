@@ -1,12 +1,12 @@
 import React, { useEffect, useContext } from 'react';
 import { Redirect } from 'react-router';
 import { context } from '../context';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
 import ListCards from '../components/ListCards';
 import fetchApi from '../services/fetchs';
 import HooksApi from '../services/hooksApi';
-import CategoriesButtons from '../components/SearchButtons';
+import CategoriesButtons from '../components/SearchButtons/SearchButtons';
 import { pathName } from '../services/functions';
 
 export default function MainPage(props) {

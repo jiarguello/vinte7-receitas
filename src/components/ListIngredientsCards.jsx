@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { context } from '../../context';
-import IngredientsCardContainer from './styled';
+import { context } from '../context';
+import IngredientsCardContainer from '../css/components/S.ListIngredientsCards';
 
 const MAX_ITENS = 12;
 

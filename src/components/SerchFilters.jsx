@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import * as S from './styled';
+import * as S from './S.SearchFilters';
 import { context } from '../../context';
 
 const initialState = {

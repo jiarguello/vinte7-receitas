@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
 import fetchApi from '../services/fetchs';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import Footer from '../components/Footer';
 import ListCards from '../components/ListCards';
 import { context } from '../context';

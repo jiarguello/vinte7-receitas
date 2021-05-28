@@ -1,7 +1,7 @@
 import React, { useEffect, useContext } from 'react';
 import fetchApi from '../services/fetchs';
 import Footer from '../components/Footer';
-import Header from '../components/Header';
+import Header from '../components/Header/Header';
 import ListIngredientsCards from '../components/ListIngredientsCards';
 import { context } from '../context';
 import { pathName } from '../services/functions';

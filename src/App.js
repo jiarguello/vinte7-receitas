@@ -5,7 +5,7 @@ import { Provider } from './context';
 import DoneRecipes from './pages/DoneRecipes';
 import FavoriteRecipes from './pages/FavoriteRecipes';
 import Profile from './pages/Profile';
-import Layout from './components/Layout';
+import Layout from './services/LayoutGlobal';
 import MainPage from './pages/MainPage';
 import RecipeProgress from './pages/RecipeProgress';
 import Explore from './pages/Explore';

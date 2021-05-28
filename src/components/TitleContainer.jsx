@@ -5,7 +5,7 @@ import BlackHeart from '../../images/blackHeartIcon.svg';
 import WhiteHeart from '../../images/whiteHeartIcon.svg';
 import shareIcon from '../../images/shareIcon.svg';
 import { updateLocalStorageItem } from '../../services/localStorage';
-import * as S from './styled';
+import * as S from './S.Details';
 import { context } from '../../context';
 
 const pathName = (path) => ({

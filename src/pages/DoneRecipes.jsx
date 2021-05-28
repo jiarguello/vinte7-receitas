@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
-import Header from '../components/Header';
-import ListDoneRecipeCards from '../components/ListDoneRecipeCard';
+import Header from '../components/Header/Header';
+import ListDoneRecipeCards from '../components/ListDoneRecipeCard/ListDoneRecipeCard';
 import { setInitialLocalStorage } from '../services/localStorage';
 import { context } from '../context';
 

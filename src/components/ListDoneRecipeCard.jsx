@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import clipboardCopy from 'clipboard-copy';
 import { Link } from 'react-router-dom';
 import shareIcon from '../../images/shareIcon.svg';
-import Card from './styled';
+import Card from './S.ListDoneRecipeCard';
 
 const timeoutClipboard = 2000;
 
