@@ -7,15 +7,15 @@ import FooterContainer from '../css/components/S.Footer';
 
 export default function Footer() {
   return (
-    <FooterContainer data-testid="footer">
+    <FooterContainer>
       <Link to="/bebidas">
-        <img src={ drinkIcon } alt="bebidas" data-testid="drinks-bottom-btn" />
+        <img src={ drinkIcon } alt="bebidas" />
       </Link>
       <Link to="/explorar">
-        <img src={ exploreIcon } alt="bebidas" data-testid="explore-bottom-btn" />
+        <img src={ exploreIcon } alt="explorar" />
       </Link>
       <Link to="/comidas">
-        <img src={ mealIcon } alt="bebidas" data-testid="food-bottom-btn" />
+        <img src={ mealIcon } alt="comidas" />
       </Link>
     </FooterContainer>
   );

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { context } from '../context';
-import ButtonsContainer from '../css/components/S.SearchButtons';
+import * as S from '../css/components/S.SearchButtons';
 import fetchApi from '../services/fetchs';
 
 function CategoriesButtons(props) {
@@ -24,27 +24,27 @@ function CategoriesButtons(props) {
   };
 
   return (
-    <ButtonsContainer>
-      <button
+    <S.ButtonsContainer>
+      <S.Button
         type="button"
         name="all"
         onClick={ (event) => handleClick(event) }
       >
         All
-      </button>
+      </S.Button>
       {
         categories.map(({ strCategory }) => (
-          <button
+          <S.Button
             key={ strCategory }
             type="button"
             name={ strCategory }
             onClick={ (event) => handleClick(event) }
           >
             { strCategory }
-          </button>
+          </S.Button>
         ))
       }
-    </ButtonsContainer>
+    </S.ButtonsContainer>
   );
 }
 
