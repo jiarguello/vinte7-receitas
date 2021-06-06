@@ -4,8 +4,8 @@ import { context } from '../context';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ListCards from '../components/ListCards';
-import { HooksApi, HooksCategory } from '../services/hooksApi';
-import CategoriesButtons from '../components/SearchButtons';
+import { useApi, useCategory } from '../services/hooksApi';
+import CategoriesButtons from '../components/CategoriesButtons';
 import { pathName } from '../services/functions';
 import { typeOfpage } from '../services/keysOfPages';
 
@@ -18,8 +18,8 @@ export default function MainPage(props) {
 
   const { isSearching } = useContext(context);
 
-  const { [typePath]: listOfRecipes, setFilter: setFilterHook } = HooksApi(typePath);
-  const { categories } = HooksCategory(typePath);
+  const { [typePath]: listOfRecipes, setFilter: setFilterHook } = useApi(typePath);
+  const { categories } = useCategory(typePath);
   const uniqueRecipe = listOfRecipes && listOfRecipes.length === 1;
 
   return (

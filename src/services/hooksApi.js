@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import { context } from '../context';
 import fetchApi from './fetchs';
 
-export function HooksApi(type) {
+export function useApi(type) {
   const {
     drinks, setDrinks,
     foods, setFoods,
@@ -21,12 +21,12 @@ export function HooksApi(type) {
         searchTerm: ''
       })
     });
-  }, [foods, setFoods, drinks, setDrinks]);
+  }, []);
 
   return { foods, drinks };
 }
 
-export function HooksCategory(type) {
+export function useCategory(type) {
   const { categories, setCategories } = useContext(context);
   const numberOfButtons = 5;
   const key = (type === 'foods' ? 'meals' : 'drinks');
@@ -37,7 +37,7 @@ export function HooksCategory(type) {
         .filter((recipe) => res[key].indexOf(recipe) < numberOfButtons);
       setCategories(result);
     });
-  }, [setCategories]);
+  }, []);
 
   return { categories };
 }
