@@ -18,12 +18,11 @@ export default function Header({ title, canFind, setFilter }) {
       <S.Header>
         <Link to="/perfil">
           <S.ProfileImg
-            data-testid="profile-top-btn"
             src={ ProfileIcon }
             alt="profile-button"
           />
         </Link>
-        <span data-testid="page-title">{title}</span>
+        <h1>{title}</h1>
         {canFind && (
           <S.SearchButton
             onClick={ handleFilters }
@@ -32,7 +31,6 @@ export default function Header({ title, canFind, setFilter }) {
             <img
               src={ SearchIcon }
               alt="search-icon"
-              data-testid="search-top-btn"
             />
           </S.SearchButton>
         )}
