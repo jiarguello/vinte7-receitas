@@ -2,8 +2,8 @@ const DOMAIN_MEAL = 'https://www.themealdb.com/';
 const DOMAIN_COCKTAIL = 'https://www.thecocktaildb.com/';
 
 const types = {
-  food: DOMAIN_MEAL,
-  cocktail: DOMAIN_COCKTAIL,
+  foods: DOMAIN_MEAL,
+  drinks: DOMAIN_COCKTAIL,
 };
 
 const selectors = {
@@ -29,7 +29,7 @@ const fetchApi = async (type, selector, endPoint) => {
     const response = await request.json();
     return (response);
   } catch (error) {
-    console.log(error);
+    return console.log(error);
   }
 };
 

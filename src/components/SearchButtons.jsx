@@ -44,7 +44,7 @@ function CategoriesButtons(props) {
         fecthAll('food', 'name', '');
       }
       if (type === 'drink') {
-        fecthAll('cocktail', 'name', '');
+        fecthAll('drinks', 'name', '');
       }
     }
 
@@ -53,7 +53,7 @@ function CategoriesButtons(props) {
     }
 
     if (type === 'drink') {
-      fecthAll('cocktail', 'categorie', target.name);
+      fecthAll('drinks', 'categorie', target.name);
     }
   };
 
@@ -62,7 +62,6 @@ function CategoriesButtons(props) {
       <button
         type="button"
         name="all"
-        data-testid="All-category-filter"
         onClick={ () => fecthAll(type, 'name', '') }
       >
         All
@@ -73,7 +72,6 @@ function CategoriesButtons(props) {
             key={ strCategory }
             type="button"
             name={ strCategory }
-            data-testid={ `${strCategory}-category-filter` }
             onClick={ handleClick }
           >
             { strCategory }

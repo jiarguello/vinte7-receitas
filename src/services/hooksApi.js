@@ -1,35 +1,43 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect } from 'react';
 import { context } from '../context';
 import fetchApi from './fetchs';
 
-const initialState = {
-  searchTerm: '',
-  option: '',
-};
+export function HooksApi(type) {
+  const {
+    drinks, setDrinks,
+    foods, setFoods,
+  } = useContext(context);
+  const {filter, setFilter} = useContext(context);
+  const { option, searchTerm } = filter;
+  const key = (type === 'foods' ? 'meals' : 'drinks');
 
-function HooksApi(type) {
-  const { drinks, setDrinks, foods, setFoods } = useContext(context);
-  const [filter, setFilter] = useState(initialState);
-  
   useEffect(() => {
-    const typeSearch = (type === 'food') ? 'meals' : 'drinks';
-    if (filter.option && filter.searchTerm) {
-      fetchApi(type, filter.option, filter.searchTerm).then(
-        (response) => {
-          if (response[typeSearch]) {
-            (typeSearch === 'meals') ? setFoods(response[typeSearch]) : setDrinks(response[typeSearch]);
-          } else {
-            alert('Sinto muito, não encontramos nenhuma receita para esses filtros.');
-          } 
-        },
-        (error) => console.log(error),
-      );
-    } else {
-      (typeSearch === 'meals') ? setFoods([]) : setDrinks([]);
-    }
-  }, [setDrinks, setFoods, filter]);
+    fetchApi(type, option, searchTerm).then((res) => {
+      const result = res[key];
+      key === 'meals' && setFoods(result);
+      key === 'drinks' && setDrinks(result);
+      setFilter({
+        option: 'name',
+        searchTerm: ''
+      })
+    });
+  }, [foods, setFoods, drinks, setDrinks]);
 
-  return { foods, drinks, setFilter, filter };
+  return { foods, drinks };
 }
 
-export default HooksApi;
+export function HooksCategory(type) {
+  const { categories, setCategories } = useContext(context);
+  const numberOfButtons = 5;
+  const key = (type === 'foods' ? 'meals' : 'drinks');
+
+  useEffect(() => {
+    fetchApi(type, 'categoriesList', '').then((res) => {
+      const result = res[key]
+        .filter((recipe) => res[key].indexOf(recipe) < numberOfButtons);
+      setCategories(result);
+    });
+  }, [setCategories]);
+
+  return { categories };
+}

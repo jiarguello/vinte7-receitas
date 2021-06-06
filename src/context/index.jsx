@@ -2,6 +2,11 @@ import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { setInitialLocalStorage } from '../services/localStorage';
 
+const initialState = {
+  searchTerm: '',
+  option: 'name',
+};
+
 const context = createContext();
 
 function Provider({ children }) {
@@ -22,6 +27,7 @@ function Provider({ children }) {
   const [doneRecipes, setDoneRecipe] = useState(
     setInitialLocalStorage('doneRecipes'),
   );
+  const [filter, setFilter] = useState(initialState)
 
   const value = {
     data,
@@ -50,6 +56,8 @@ function Provider({ children }) {
     setToggleButton,
     ingredientOn,
     setIngreditOn,
+    filter,
+    setFilter,
   };
 
   return <context.Provider value={ value }>{children}</context.Provider>;

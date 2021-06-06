@@ -1,9 +1,9 @@
 import copy from 'clipboard-copy';
 
 export const pathName = (path) => ({
-  typePath: path.includes('comidas') ? 'food' : 'cocktail',
+  typePath: path.includes('comidas') ? 'foods' : 'drinks',
   selectorPath: path.includes('comidas') ? 'meals' : 'drinks',
-  recomendationPath: path.includes('comidas') ? 'cocktail' : 'food',
+  recomendationPath: path.includes('comidas') ? 'drinks' : 'foods',
   recomendationName: path.includes('comidas') ? 'drinks' : 'meals',
 });
 

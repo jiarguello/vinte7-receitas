@@ -36,9 +36,8 @@ export default function SearchFilters({ setFilter }) {
         Termo
         <input
           type="text"
-          data-testid="search-input"
-          value={ options.searchTerm }
-          onChange={ handleNewFilterSearchTerm }
+          value={options.searchTerm}
+          onChange={handleNewFilterSearchTerm}
         />
       </label>
 
@@ -46,9 +45,8 @@ export default function SearchFilters({ setFilter }) {
         <label htmlFor="ingredient">
           <input
             type="radio"
-            data-testid="ingredient-search-radio"
-            checked={ options.option === 'ingredient' }
-            onChange={ handleNewFilterOption }
+            checked={options.option === 'ingredient'}
+            onChange={handleNewFilterOption}
             value="ingredient"
           />
           Ingrediente
@@ -56,9 +54,8 @@ export default function SearchFilters({ setFilter }) {
         <label htmlFor="name">
           <input
             type="radio"
-            data-testid="name-search-radio"
-            checked={ options.option === 'name' }
-            onChange={ handleNewFilterOption }
+            checked={options.option === 'name'}
+            onChange={handleNewFilterOption}
             value="name"
           />
           Nome
@@ -66,9 +63,8 @@ export default function SearchFilters({ setFilter }) {
         <label htmlFor="first-letter">
           <input
             type="radio"
-            data-testid="first-letter-search-radio"
-            checked={ options.option === 'letters' }
-            onChange={ handleNewFilterOption }
+            checked={options.option === 'letters'}
+            onChange={handleNewFilterOption}
             value="letters"
           />
           Primeira Letra
@@ -76,9 +72,8 @@ export default function SearchFilters({ setFilter }) {
       </S.RadiosContainer>
 
       <button
-        onClick={ setNewFilter }
+        onClick={setNewFilter}
         type="button"
-        data-testid="exec-search-btn"
       >
         Buscar
       </button>
