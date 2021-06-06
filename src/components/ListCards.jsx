@@ -5,7 +5,7 @@ import { typeOfpage } from '../services/keysOfPages';
 
 function ListCards(props) {
   const { type } = props;
-  const { id, thumb, str  } = typeOfpage[type];
+  const { id, thumb, type: path , str  } = typeOfpage[type];
 
   const MAX_ITENS = 12;
 
@@ -13,7 +13,7 @@ function ListCards(props) {
     const cards = props.items.filter((item) => props.items.indexOf(item) < MAX_ITENS)
       .map((item) => ((
         <S.Card key={ item[id] }>
-          <Link to={ `/${type}/${item[id]}` }>
+          <Link to={ `/${path}/${item[id]}` }>
             <h1>{item[str]}</h1>
             <img
               src={ item[thumb] }

@@ -27,6 +27,7 @@ function Provider({ children }) {
     setInitialLocalStorage('doneRecipes'),
   );
   const [filter, setFilter] = useState(initialState)
+  const [recomendations, setRecomendations] = useState(null);
 
   const value = {
     data,
@@ -55,6 +56,8 @@ function Provider({ children }) {
     setIngreditOn,
     filter,
     setFilter,
+    recomendations,
+    setRecomendations,
   };
 
   return <context.Provider value={ value }>{children}</context.Provider>;

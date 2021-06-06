@@ -9,39 +9,40 @@ const timeoutClipboard = 2000;
 function ListDoneRecipeCards({ done = [] }) {
   const [clipboard, setClipboard] = useState(false);
 
-  const handleClipboard = (item) => {
-    clipboardCopy(`http://localhost:3000/${item.type}s/${item.id}`);
+  const handleClipboard = (type, id) => {
+    clipboardCopy(`http://localhost:3000/${type}s/${id}`);
     setClipboard(true);
     setTimeout(() => setClipboard(false), timeoutClipboard);
   };
 
-  const renderCard = (item, index) => (
-    <Card key={ item.id } data-testid={ `${index}-recipe-card` }>
-      <span data-testid={ `${index}-horizontal-top-text` }>
-        {item.alcoholicOrNot || `${item.area} - ${item.category}`}
+  const renderCard = ({
+      id, alcoholicOrNot, type, image,
+      name, area, category, doneDate, tags
+    }, index) => (
+
+    <Card key={ id }>
+      <span>
+        {alcoholicOrNot || `${area} - ${category}`}
       </span>
-      <Link to={ `/${item.type}s/${item.id}` }>
+      <Link to={ `/${type}s/${id}` }>
         <img
           style={ { width: '100%' } }
-          data-testid={ `${index}-horizontal-image` }
-          src={ item.image }
-          alt={ `${item.name}-done-recipe` }
+          src={ image }
+          alt={ `${name}-done-recipe` }
         />
-        <span data-testid={ `${index}-horizontal-name` }>{item.name}</span>
+        <span>{name}</span>
       </Link>
-      <span data-testid={ `${index}-horizontal-done-date` }>{item.doneDate}</span>
-      { item.tags.map((tagName) => (
+      <span>{doneDate}</span>
+      { tags.map((tagName) => (
         <span
           key={ `${tagName}-${index}` }
-          data-testid={ `${index}-${tagName}-horizontal-tag` }
         >
           {tagName}
         </span>
       )) }
       <div>
-        <button type="button" onClick={ handleClipboard.bind(null, item) }>
+        <button type="button" onClick={ handleClipboard.bind(null, type, id) }>
           <img
-            data-testid={ `${index}-horizontal-share-btn` }
             src={ shareIcon }
             alt="share-status"
           />

@@ -14,6 +14,8 @@ import {
 import { updateLocalStorageItemInProgress } from '../services/localStorage';
 import { context } from '../context';
 
+import { useDetails } from '../services/hooksApi';
+
 export default function Details(props) {
   const [details, setDetails] = useState(null);
   const [recomendation, setRecomendation] = useState(null);
@@ -34,9 +36,12 @@ export default function Details(props) {
 
   const recomendationDefaultLength = 6;
 
-  useEffect(() => {
-    fetchApi(typePath, 'details', id).then((res) => setDetails(res[selectorPath][0]));
-  }, [id, typePath, selectorPath]);
+  const { recomendations } = useDetails(recomendationPath, id)
+  console.log(recomendation);
+
+  // useEffect(() => {
+  //   fetchApi(typePath, 'details', id).then((res) => setDetails(res[selectorPath][0]));
+  // }, [id, typePath, selectorPath]);
 
   useEffect(() => {
     fetchApi(recomendationPath, 'name', '').then((res) => {
@@ -81,10 +86,9 @@ export default function Details(props) {
       <S.ThumbNail
         src={ sources('strMealThumb', 'strDrinkThumb', details, typePath) }
         alt="recipe"
-        data-testid="recipe-photo"
       />
       <TitleContainer { ...props } item={ details } />
-      <h3 data-testid="recipe-category">
+      <h3>
         {details
           && (typePath === 'food' ? details.strCategory : details.strAlcoholic)}
       </h3>
@@ -94,7 +98,6 @@ export default function Details(props) {
           && ingredientsArray(details).map((item, index) => (
             <li
               key={ index }
-              data-testid={ `${index}-ingredient-name-and-measure` }
             >
               {measureArray(details)[index]}
               &nbsp;
@@ -102,18 +105,17 @@ export default function Details(props) {
             </li>
           ))}
       </ul>
-      <p data-testid="instructions">{details && details.strInstructions}</p>
-      {typePath === 'food' && (
+      <p>{details && details.strInstructions}</p>
+      {typePath === 'foods' && (
         <iframe
           src={ details && details.strYoutube }
-          data-testid="video"
           title="video"
         />
       )}
       <S.RecomendationContainer>
         {recomendation
           && recomendation.map((recipe, index) => (
-            <S.Card key={ index } data-testid={ `${index}-recomendation-card` }>
+            <S.Card key={ index }>
               <img
                 src={ sourcesRecomendations(
                   'strMealThumb',
@@ -123,7 +125,7 @@ export default function Details(props) {
                 ) }
                 alt="recomendations"
               />
-              <h3 data-testid={ `${index}-recomendation-title` }>
+              <h3>
                 {sourcesRecomendations('strMeal', 'strDrink', recipe, typePath)}
               </h3>
             </S.Card>
@@ -131,7 +133,6 @@ export default function Details(props) {
       </S.RecomendationContainer>
       <S.StartButton
         type="button"
-        data-testid="start-recipe-btn"
         onClick={ handleStart }
       >
         Iniciar Receita
