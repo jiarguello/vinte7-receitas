@@ -1,130 +1,87 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-import fetchApi from '../services/fetchs';
 import * as S from '../css/pages/S.Details';
 import TitleContainer from '../components/TitleContainer';
 import {
   pathName,
   ingredientsArray,
   measureArray,
-  sources,
   sourcesRecomendations,
+  adjustmentUrl,
 } from '../services/functions';
-import { updateLocalStorageItemInProgress } from '../services/localStorage';
 import { context } from '../context';
-
-import { useDetails } from '../services/hooksApi';
+import { useDetails, useRecomendations } from '../services/hooksApi';
+import { typeOfpage } from '../services/keysOfPages';
+import { updateLocalStorageInProgress } from '../services/localStorage';
 
 export default function Details(props) {
-  const [details, setDetails] = useState(null);
-  const [recomendation, setRecomendation] = useState(null);
-  const { setInProgressRecipes } = useContext(context);
   const [redirect, setRedirect] = useState(false);
+  const { inProgressRecipes, setInProgressRecipes } = useContext(context);
+
   const {
     match: { params, path },
   } = props;
-
+  const { id } = params;
+  
   const {
     typePath,
-    selectorPath,
     recomendationPath,
-    recomendationName,
   } = pathName(path);
 
-  const { id } = params;
-
-  const recomendationDefaultLength = 6;
-
-  const { recomendations } = useDetails(recomendationPath, id)
-  console.log(recomendation);
-
-  // useEffect(() => {
-  //   fetchApi(typePath, 'details', id).then((res) => setDetails(res[selectorPath][0]));
-  // }, [id, typePath, selectorPath]);
-
-  useEffect(() => {
-    fetchApi(recomendationPath, 'name', '').then((res) => {
-      const recomentation = res[recomendationName].filter(
-        (item) => res[recomendationName].indexOf(item) < recomendationDefaultLength,
-      );
-      setRecomendation(recomentation);
-    });
-  }, [recomendationPath, recomendationName, selectorPath]);
+  const { id: idType, category } = typeOfpage[typePath];
+  
+  const { details } = useDetails(typePath, id);
+  const { recomendations } = useRecomendations(recomendationPath);
 
   const handleStart = () => {
+    setInProgressRecipes([...inProgressRecipes, details]);
+    updateLocalStorageInProgress('inProgress', details)
     setRedirect(true);
-    setInProgressRecipes((prevState) => {
-      console.log(prevState);
-      return path.includes('comida')
-        ? updateLocalStorageItemInProgress('inProgressRecipes', {
-          ...prevState,
-          meals: {
-            ...prevState.meals,
-            [details.idMeal]: [],
-          },
-        })
-        : updateLocalStorageItemInProgress('inProgressRecipes', {
-          ...prevState,
-          cocktails: {
-            ...prevState.cocktails,
-            [details.idDrink]: [],
-          },
-        });
-    });
   };
 
-  if (redirect) {
-    return (
-      <Redirect
-        to={ `/comidas/${details.idMeal || details.idDrink}/in-progress` }
-      />
-    );
-  }
+  if (redirect) return <Redirect
+    to={ `/comidas/${details[idType]}/in-progress` }
+  />
+
   return (
     <S.Container>
-      <S.ThumbNail
-        src={ sources('strMealThumb', 'strDrinkThumb', details, typePath) }
-        alt="recipe"
-      />
-      <TitleContainer { ...props } item={ details } />
-      <h3>
-        {details
-          && (typePath === 'food' ? details.strCategory : details.strAlcoholic)}
-      </h3>
-      <ul>
-        <h4>Ingredients:</h4>
-        {details
-          && ingredientsArray(details).map((item, index) => (
-            <li
-              key={ index }
-            >
-              {measureArray(details)[index]}
-              &nbsp;
-              <strong>{item}</strong>
-            </li>
-          ))}
-      </ul>
-      <p>{details && details.strInstructions}</p>
-      {typePath === 'foods' && (
-        <iframe
-          src={ details && details.strYoutube }
-          title="video"
-        />
-      )}
+      { details &&
+        <main>
+          <S.ThumbNail src={ details.strMealThumb } alt="recipe" />
+          <TitleContainer { ...props } item={ details } />
+          <h3>{details[category]}</h3>
+          <ul>
+            <h4>Ingredients:</h4>
+            {
+              ingredientsArray(details).map((item, index) => (
+                <li
+                key={ index }
+                >
+                  {measureArray(details)[index]}
+                  &nbsp;
+                  <strong>{item}</strong>
+                </li>
+              ))
+            }
+          </ul>
+          <p>{details.strInstructions}</p>
+          {typePath === 'foods' && (
+            <iframe
+            src={ adjustmentUrl(details.strYoutube) }
+            title="video"
+            />
+            )}
+        </main>
+      }
       <S.RecomendationContainer>
-        {recomendation
-          && recomendation.map((recipe, index) => (
+        {recomendations
+          && recomendations.map((recipe, index) => (
             <S.Card key={ index }>
               <img
-                src={ sourcesRecomendations(
-                  'strMealThumb',
-                  'strDrinkThumb',
-                  recipe,
-                  typePath,
-                ) }
+                src={ recipe.strDrinkThumb }
                 alt="recomendations"
-              />
+                />
               <h3>
                 {sourcesRecomendations('strMeal', 'strDrink', recipe, typePath)}
               </h3>

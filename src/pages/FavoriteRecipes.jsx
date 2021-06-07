@@ -3,7 +3,7 @@ import ListFavoriteCards from '../components/ListFavoriteCards';
 
 import Header from '../components/Header';
 import { context } from '../context';
-import { setInitialLocalStorage } from '../services/localStorage';
+import { createLocalStorage } from '../services/localStorage';
 
 const FILTER_OPTIONS = {
   all: 'All',
@@ -14,7 +14,7 @@ const FILTER_OPTIONS = {
 function FavoriteRecipes() {
   const { favoriteRecipes } = useContext(context);
   const [filteredFood, setFilteredFood] = useState(
-    setInitialLocalStorage('favoriteRecipes'),
+    createLocalStorage('favoriteRecipes'),
   );
 
   const handleFilter = (option) => {

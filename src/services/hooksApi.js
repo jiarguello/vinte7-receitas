@@ -43,15 +43,27 @@ export function useCategory(type) {
 }
 
 export function useDetails(type, id) {
-  const { recomendations, setRecomendations } = useContext(context);
-  const lengthOfRecomendations = 6;
+  const { details, setDetails } = useContext(context);
   const key = (type === 'foods' ? 'meals' : 'drinks');
 
   useEffect(() => {
     fetchApi(type, 'details', id).then((res) => {
-      const result = res[key]
-        // .filter((recipe) => res[key].indexOf(recipe) < lengthOfRecomendations);
-      setRecomendations(result);
+      setDetails(res[key][0]);
+    });
+  }, []);
+
+  return { details };
+}
+
+export function useRecomendations(type) {
+  const { recomendations, setRecomendations } = useContext(context);
+  const key = (type === 'foods' ? 'meals' : 'drinks');
+  const lengthOfRecomendations = 6;
+
+  useEffect(() => {
+    fetchApi(type, 'name', '').then((res) => {
+      const result = res[key].filter((recipe) => res[key].indexOf(recipe) < lengthOfRecomendations);
+        setRecomendations(result);
     });
   }, []);
 

@@ -1,6 +1,6 @@
 import React, { createContext, useState } from 'react';
 import PropTypes from 'prop-types';
-import { setInitialLocalStorage } from '../services/localStorage';
+import { createLocalStorage } from '../services/localStorage';
 
 const initialState = {
   searchTerm: '',
@@ -20,14 +20,16 @@ function Provider({ children }) {
   const [isSearching, setIsSearching] = useState(false);
   const [surpriseId, setSurpriseId] = useState(null);
   const [favoriteRecipes, setFavoriteRecipes] = useState(
-    setInitialLocalStorage('favoriteRecipes'),
+    createLocalStorage('favoriteRecipes'),
   );
   const [ingredientOn, setIngreditOn] = useState('');
   const [doneRecipes, setDoneRecipe] = useState(
-    setInitialLocalStorage('doneRecipes'),
+    createLocalStorage('doneRecipes'),
   );
   const [filter, setFilter] = useState(initialState)
   const [recomendations, setRecomendations] = useState(null);
+  const [details, setDetails] = useState(null);
+  const [inProgressRecipes, setInProgressRecipes] = useState([]);
 
   const value = {
     data,
@@ -58,6 +60,10 @@ function Provider({ children }) {
     setFilter,
     recomendations,
     setRecomendations,
+    details,
+    setDetails,
+    inProgressRecipes,
+    setInProgressRecipes,
   };
 
   return <context.Provider value={ value }>{children}</context.Provider>;

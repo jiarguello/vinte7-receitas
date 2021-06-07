@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import Header from '../components/Header';
 import ListDoneRecipeCards from '../components/ListDoneRecipeCard';
-import { setInitialLocalStorage } from '../services/localStorage';
+import { createLocalStorage } from '../services/localStorage';
 import { context } from '../context';
 
 const FILTER_OPTIONS = {
@@ -12,7 +12,7 @@ const FILTER_OPTIONS = {
 function DoneRecipes() {
   const { doneRecipes } = useContext(context);
   const [doneFilteredRecipes, setFilteredRecipes] = useState(
-    setInitialLocalStorage('doneRecipes'),
+    createLocalStorage('doneRecipes'),
   );
 
   const handleFilter = (option) => {

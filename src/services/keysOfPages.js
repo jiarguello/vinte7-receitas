@@ -6,6 +6,7 @@ export const typeOfpage = {
     page: 'foods',
     thumb: 'strMealThumb',
     str: 'strMeal',
+    category: 'strCategory',
   },
   drinks: {
     title: 'Bebidas',
@@ -13,6 +14,7 @@ export const typeOfpage = {
     type: 'bebidas', 
     page: 'drinks',
     thumb: 'strDrinkThumb',
-    str: 'strDrink'
+    str: 'strDrink',
+    category: 'strAlcoholic',
   },
 };

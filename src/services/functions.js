@@ -22,15 +22,13 @@ export const copyLInk = (link, callback) => {
   callback(true);
 };
 
+// Excluir após ajustar recipes Progress
 export const sources = (meal, drink, details, typePath) => (details
   && ((typePath === 'food') ? details[meal] : details[drink]));
 
 export const sourcesRecomendations = (meal, drink, recipe, typePath) => (typePath
   === 'food' ? recipe[drink] : recipe[meal]);
 
-// export const fetchWithLimit = (type, limit) => {
-//   fetchApi(type, selector, searchName).then((res) => {
-//     const fetchDrinks = res.drinks
-//       .filter((drink) => res.drinks.indexOf(drink) < lengthOfList);
-//     setDrinks(fetchDrinks);
-// }
+export const adjustmentUrl = (url) => {
+  return url.replace('watch?v=', 'embed/')
+}
