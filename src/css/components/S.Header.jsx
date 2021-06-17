@@ -3,8 +3,10 @@ import styled from 'styled-components';
 export const Header = styled.header`
   align-items: center;
   background-color: var(--color-hearder);
+  top: 0px;
   display: flex;
   justify-content: space-around;
+  position: fixed;
   width: 100%;
 `;
 

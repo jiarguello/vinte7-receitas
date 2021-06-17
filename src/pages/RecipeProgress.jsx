@@ -1,8 +1,6 @@
 import React, { useEffect, useState, useContext } from 'react';
-import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import fetchApi from '../services/fetchs';
-import * as S from '../css/pages/S.RecipeProgress';
+import { Redirect } from 'react-router-dom';
 import TitleContainer from '../components/TitleContainer';
 import {
   pathName,
@@ -10,23 +8,31 @@ import {
   measureArray,
   sources,
 } from '../services/functions';
+// import { context } from '../context';
+import { useDetails, useRecomendations } from '../services/hooksApi';
+import { typeOfpage } from '../services/keysOfPages';
+import * as S from '../css/pages/S.RecipeProgress';
+
+import fetchApi from '../services/fetchs';
 
 export default function RecipeProgress(props) {
-  const [details, setDetails] = useState(null);
   const [counter, setCounter] = useState(0);
   const [redirect, setRedirect] = useState(false);
 
   const {
     match: { params, path },
   } = props;
-
-  const { typePath, selectorPath } = pathName(path);
-
   const { id } = params;
 
-  useEffect(() => {
-    fetchApi(typePath, 'details', id).then((res) => setDetails(res[selectorPath][0]));
-  }, [id, typePath, selectorPath]);
+  
+  const {
+    typePath,
+    selectorPath,
+  } = pathName(path);
+  
+  const { id: idType, category } = typeOfpage[typePath];
+
+  const { details } = useDetails(typePath, id);
 
   const handle = ({ target }) => {
     if (target.checked) {
@@ -55,43 +61,49 @@ export default function RecipeProgress(props) {
 
   return (
     <S.Container>
-      <S.ThumbNail
-        src={ sources('strMealThumb', 'strDrinkThumb', details, typePath) }
-        alt="recipe"
-      />
-      <TitleContainer { ...props } item={ details } />
-      <h3>
-        {details
-          && (typePath === 'food' ? details.strCategory : details.strAlcoholic)}
-      </h3>
-      <ul>
-        <h4>Ingredients:</h4>
-        {details
-          && ingredientsArray(details).map((item, index) => (
-            <label
-              key={ index }
-              htmlFor={ index }
-            >
-              <input
-                id={ index }
-                type="checkbox"
-                onClick={ handle }
-              />
-              {measureArray(details)[index]}
-              &nbsp;
-              <strong>{item}</strong>
-            </label>
-          ))}
-      </ul>
-      <p>{details && details.strInstructions}</p>
-      <button
-        type="button"
-        disabled={ ((ingredientsArray(details) === null
-          ? '' : (ingredientsArray(details).length) !== counter)) }
-        onClick={ doneRecipe }
-      >
-        Finalizar Receita
-      </button>
+      {
+        details && 
+        <S.Main>
+          <S.ThumbNail
+            src={ details.strMealThumb }
+            alt="recipe"
+          />
+          <TitleContainer { ...props } item={ details } />
+          <S.H3>
+            {details
+              && (typePath === 'food' ? details.strCategory : details.strAlcoholic)}
+          </S.H3>
+          <S.H3>Ingredients:</S.H3>
+          <ul>
+            {
+              ingredientsArray(details).map((item, index) => (
+                <S.Label
+                  key={ index }
+                  htmlFor={ index }
+                >
+                  <input
+                    id={ index }
+                    type="checkbox"
+                    onClick={ handle }
+                  />
+                  &nbsp;
+                  {measureArray(details)[index]}
+                  &nbsp;
+                  <strong>{item}</strong>
+                </S.Label>
+              ))}
+          </ul>
+          <S.P>{details && details.strInstructions}</S.P>
+          <S.ButtonFinish
+            type="button"
+            disabled={ ((ingredientsArray(details) === null
+              ? '' : (ingredientsArray(details).length) !== counter)) }
+            onClick={ doneRecipe }
+          >
+            Finalizar Receita
+          </S.ButtonFinish>
+        </S.Main>
+      }
       { redirect && <Redirect to="/receitas-feitas" /> }
     </S.Container>
   );

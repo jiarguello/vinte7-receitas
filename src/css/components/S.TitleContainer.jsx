@@ -2,7 +2,8 @@ import styled from 'styled-components';
 
 export const TitleContainer = styled.section`
   display: flex;
-  justify-content: space-around;
+  flex-direction: column;
+  align-items: center;
   margin: 1rem 0;
   text-transform: uppercase;
 `;
@@ -29,3 +30,31 @@ export const StartButton = styled.button`
   position: fixed;
   width: 50%;
 `;
+
+export const ButtonFavorite =styled.button`
+  heigth: 100px;
+`
+
+export const H1 = styled.h1`
+  margin: 3vh 10% 1vh 10%;
+  font-size: 4vh;
+`
+
+export const Hr = styled.hr`
+  width: 80%;
+`
+
+export const Div = styled.div`
+  display: flex;
+  justify-content: right;
+  padding-left: 90% ;
+  margin-top: 2vh;
+  width: 60%;
+`
+
+export const Buttons = styled.button`
+  background-color: white;
+  border-radius: 10%;
+  width: 7vh;
+  border: none;
+`

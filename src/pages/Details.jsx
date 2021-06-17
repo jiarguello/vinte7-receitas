@@ -1,19 +1,19 @@
 import React, { useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-import * as S from '../css/pages/S.Details';
 import TitleContainer from '../components/TitleContainer';
 import {
   pathName,
   ingredientsArray,
   measureArray,
-  sourcesRecomendations,
   adjustmentUrl,
 } from '../services/functions';
 import { context } from '../context';
 import { useDetails, useRecomendations } from '../services/hooksApi';
 import { typeOfpage } from '../services/keysOfPages';
 import { updateLocalStorageInProgress } from '../services/localStorage';
+import * as S from '../css/pages/S.Details';
+
 
 export default function Details(props) {
   const [redirect, setRedirect] = useState(false);
@@ -32,7 +32,7 @@ export default function Details(props) {
   const { id: idType, category } = typeOfpage[typePath];
   
   const { details } = useDetails(typePath, id);
-  const { recomendations } = useRecomendations(recomendationPath);
+  // const { recomendations } = useRecomendations(recomendationPath);
 
   const handleStart = () => {
     setInProgressRecipes([...inProgressRecipes, details]);
@@ -47,34 +47,39 @@ export default function Details(props) {
   return (
     <S.Container>
       { details &&
-        <main>
+        <S.Main>
           <S.ThumbNail src={ details.strMealThumb } alt="recipe" />
           <TitleContainer { ...props } item={ details } />
-          <h3>{details[category]}</h3>
+          <S.H3>Ingredients:</S.H3>
           <ul>
-            <h4>Ingredients:</h4>
             {
               ingredientsArray(details).map((item, index) => (
-                <li
+                <S.Li
                 key={ index }
                 >
                   {measureArray(details)[index]}
                   &nbsp;
                   <strong>{item}</strong>
-                </li>
+                </S.Li>
               ))
             }
           </ul>
-          <p>{details.strInstructions}</p>
+          <S.P>{details.strInstructions}</S.P>
           {typePath === 'foods' && (
-            <iframe
+            <S.Iframe
             src={ adjustmentUrl(details.strYoutube) }
             title="video"
             />
             )}
-        </main>
+          <S.StartButton
+            type="button"
+            onClick={ handleStart }
+          >
+            Iniciar
+          </S.StartButton>
+        </S.Main>
       }
-      <S.RecomendationContainer>
+      {/* <S.RecomendationContainer>
         {recomendations
           && recomendations.map((recipe, index) => (
             <S.Card key={ index }>
@@ -87,13 +92,7 @@ export default function Details(props) {
               </h3>
             </S.Card>
           ))}
-      </S.RecomendationContainer>
-      <S.StartButton
-        type="button"
-        onClick={ handleStart }
-      >
-        Iniciar Receita
-      </S.StartButton>
+      </S.RecomendationContainer> */}
     </S.Container>
   );
 }

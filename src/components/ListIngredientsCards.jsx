@@ -29,12 +29,11 @@ function ListIngredientsCards(props) {
 
     const cards = props.items.filter((item) => props.items.indexOf(item) < MAX_ITENS)
       .map((item, index) => ((
-        <div key={ item[option] } data-testid={ `${index}-ingredient-card` }>
+        <div key={ item[option] }>
           <IngredientsCardContainer>
             <Link to={ `/${drinkOrFood}` } onClick={ () => choiceItem(item[option]) }>
-              <span data-testid={ `${index}-card-name` }>{item[option]}</span>
+              <span >{item[option]}</span>
               <img
-                data-testid={ `${index}-card-img` }
                 src={ `${link}${item[option]}-Small.png` }
                 alt={ item[option] }
               />

@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import { context } from '../context';
-import * as S from '../css/components/S.SearchButtons';
+import * as S from '../css/components/S.CategoriesButtons';
 import fetchApi from '../services/fetchs';
 
 function CategoriesButtons(props) {

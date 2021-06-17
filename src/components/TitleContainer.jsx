@@ -56,20 +56,21 @@ function TitleContainer({
 
   return (
     <S.TitleContainer>
-      <h1 data-testid="recipe-title">{sources('strMeal', 'strDrink')}</h1>
-      <div>
-        <button type="button" onClick={ handleClipboard }>
-          <img data-testid="share-btn" src={ shareIcon } alt="favorite-status" />
-        </button>
+      <S.H1>{sources('strMeal', 'strDrink')}</S.H1>
+      <S.Hr></S.Hr>
+      <S.Div>
+        <S.Buttons type="button" onClick={ handleClipboard }>
+          <img style={ { height: "4vh" } } src={ shareIcon } alt="favorite-status" />
+        </S.Buttons>
         {clipboard && <span>Link copiado!</span>}
-        <button type="button" onClick={ handleFavorite }>
+        <S.Buttons type="button" onClick={ handleFavorite }>
           <img
+            style={ { height: "4vh" } }
             src={ isFavorite ? BlackHeart : WhiteHeart }
             alt="favorite-status"
-            data-testid="favorite-btn"
           />
-        </button>
-      </div>
+        </S.Buttons>
+      </S.Div>
     </S.TitleContainer>
   );
 }
